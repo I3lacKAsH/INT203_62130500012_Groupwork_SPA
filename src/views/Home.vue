@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <nav-bar />
+  <div class="flex justify-center w-full h-full font-sans bg-green-100">
+    <img
+      alt="illustrations Homepage"
+      src="../assets/Calendar.png"
+      height="800"
+      width="800"
+      class="relative my-20 mr-20"
+    />
+    <div class="absolute z-0 my-24 text-3xl tracking-wide text-black">
+      <p class="py-0.5">Startup My TimeLine Page</p>
+      <p class="py-0.5">Built with TailwindCSS</p>
+      <div class="grid gap-2">
+        <button
+          class="px-24 py-2 my-10 ml-10 text-2xl text-white uppercase bg-green-400 rounded-full shadow-sm max-w-max hover:shadow-lg"
+        >Create</button>
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
   }
 }
 </script>
