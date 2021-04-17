@@ -69,7 +69,7 @@
                         class="block w-full px-4 py-3 mb-3 border rounded appearance-none bg-grey-lighter text-grey-darker border-grey-lighter"
                         id="grid-date"
                         type="text"
-                        placeholder="My date"
+                        placeholder="DD / MMM / YYYY"
                         v-model="dates"
                     />
                     <p v-if="invalidDate" class="text-xs italic text-red-400">Please fill Date</p>
@@ -140,16 +140,16 @@ export default {
             this.dates = ""
         },
 
-        async getTimeline() {
-            try {
-                const res = await fetch(this.url)
-                const data = await res.json()
-                return data
-            }
-            catch (error) {
-                console.log(`Not get because ${error} !`)
-            }
-        },
+        // async getTimeline() {
+        //     try {
+        //         const res = await fetch(this.url)
+        //         const data = await res.json()
+        //         return data
+        //     }
+        //     catch (error) {
+        //         console.log(`Not get because ${error} !`)
+        //     }
+        // },
 
         async addNewTimeline(newTimeline) {
             try {
@@ -171,11 +171,43 @@ export default {
             catch (error) {
                 console.log(`Not save because ${error} !`)
             }
-        }
-    },
+        },
+        
+        async updateTimeline(editTimeline) {
+            try {
+                const res = await fetch(`${this.url}/${editTimeline.id}`, {
+                    method: 'PUT',
+                    header: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fname: editTimeline.fname,
+                        lname: editTimeline.lname,
+                        desc: editTimeline.desc,
+                        dates: editTimeline.dates
+                    })
+                })
+                const data = await res.json()
+                this.timeLines = this.timeLines.map(
+                    (timeLines) => timeLines.id === editTimeline.id ?
+                        { ...editTimeline, fname: data.fname, lname: data.lname, desc: data.desc, dates: data.dates } : timeLines)
+                this.edit = false
+                this.editId = ""
+                this.fname = ""
+                this.lname = ""
+                this.desc = ""
+                this.dates = ""
+            } catch (error) {
+                console.log(`Not edit because ${error} !`)
+            }
 
-    async created() {
-        this.timeLines = await this.getTimeline()
+        },
+
+
+
+        // async created() {
+        //     this.timeLines = await this.getTimeline()
+        // }
     }
 }
 </script>
