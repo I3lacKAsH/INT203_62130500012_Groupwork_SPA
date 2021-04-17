@@ -1,6 +1,12 @@
 <template>
-  <nav-bar/>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <nav-bar />
+  <p class="font-sans text-5xl">TimeLine Beta</p>
+  <time-line />
+
+  
 </template>
+
+
+<script>
+
+</script>

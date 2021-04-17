@@ -12,9 +12,11 @@
       <p class="py-0.5">Startup My TimeLine Page</p>
       <p class="py-0.5">Built with TailwindCSS</p>
       <div class="grid gap-2">
-        <button
-          class="px-24 py-2 my-10 ml-10 text-2xl text-white uppercase bg-green-400 rounded-full shadow-sm max-w-max hover:shadow-lg"
-        >Create</button>
+        <a href="/form">
+          <button
+            class="btn"
+          >Create</button>
+        </a>
       </div>
     </div>
   </div>
