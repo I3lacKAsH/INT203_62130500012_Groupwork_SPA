@@ -18,7 +18,7 @@
     <div class="self-center sm:mb-0">
       <router-link class="px-1 mx-5 text-xl" to="/">Home</router-link>
       <router-link class="px-1 mx-5 text-xl" to="/form">Form</router-link>
-      <router-link class="px-1 mx-5 text-xl" to="/about">About</router-link>
+      <router-link class="px-1 mx-5 text-xl" to="/timeline">TimeLine</router-link>
     </div>
     <router-view />
   </div>

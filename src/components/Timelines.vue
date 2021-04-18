@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <div class="flex flex-col grid-cols-9 mx-auto md:grid text-blue-50">
-            <div class="flex md:contents" v-bind:class="[state ? 'flex-row-reverse' : '']">
+            <div class="flex md:contents">
                 <div
                     class="col-start-1 col-end-5 p-4 my-4 ml-auto bg-green-500 shadow-md rounded-xl"
                 >
                     <h3 class="mb-1 text-lg font-semibold">{{ time.fname }} {{ time.lname }}</h3>
                     <p class="leading-tight text-justify">{{ time.desc }}</p>
                     <h5 class="text-lg">{{ time.dates }}</h5>
-                    <button @click="showData(timeline)" class="mx-10 rounded-lg">
+                    <button @click="editData(time)" class="mx-10 rounded-lg">
                         <img src="../assets/Edit.png" width="30" class />
                     </button>
                     <button @click="deleteTimeline(time.id)" class="mx-10 rounded-lg">
@@ -32,7 +32,6 @@ export default {
         return {
             url: 'http://localhost:3000/timeLines',
             timeLines: [],
-            state: (this.time.id % 2 == 0)
         }
     },
 
@@ -43,16 +42,20 @@ export default {
     methods: {
         async deleteTimeline(deleteId) {
             try {
-                await fetch(`${this.url}/${deleteId}`,{
+                await fetch(`${this.url}/${deleteId}`, {
                     method: 'DELETE'
                 })
                 this.timeLines = this.timeLines.filter(
                     (time) => time.id !== deleteId
                 )
-            } catch (error){
+            } catch (error) {
                 console.log(`Not delete because ${error} !`)
             }
-        }
+        },
+        editData(oldTimeline) {
+            oldTimeline.edit = true;
+            this.$emit('whenEdit', oldTimeline)
+        },
     }
 }
 </script>
