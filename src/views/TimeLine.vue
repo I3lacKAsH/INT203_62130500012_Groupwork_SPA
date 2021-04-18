@@ -1,6 +1,6 @@
 <template>
   <nav-bar />
-  <p class="py-8 font-sans text-4xl">MY TimeLine</p>
+  <p class="py-8 font-sans text-4xl">My TimeLine</p>
   <div v-if="!renderUpdate">
     <time-line
       v-for="timeline in timelines"
